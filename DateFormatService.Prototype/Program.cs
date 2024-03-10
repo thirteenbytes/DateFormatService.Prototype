@@ -2,21 +2,13 @@
 using DateFormatService.Prototype;
 using System.Globalization;
 
-var formats = new List<string>
-{
-    "dd/MM/yyyy",    
-    "MM/dd/yyyy"
-};
+var provider = new DefaultDateTimeFormatProvider();
 
-
+var formats = provider.GetDateTimeFormatPatterns().ToList();
 formats.AddRange(CultureInfo.CurrentCulture.DateTimeFormat.GetAllDateTimePatterns());
 
-foreach (var format in formats)
-{
-    Console.WriteLine(format);
-}
 
-var parser = new DateTimeParserService(formats);
+var parser = new DateTimeParserService(provider);
 
 var listOfDates = new List<string>()
 {

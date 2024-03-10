@@ -11,9 +11,9 @@ public class DateTimeParserService : IDateTimeParserService
 {
     private List<string> _dateTimeFormatPatterns;
 
-    public DateTimeParserService(List<string> dateTimeFormatPatterns)
+    public DateTimeParserService(IDateTimeFormatProvider provider)
     {
-        _dateTimeFormatPatterns = dateTimeFormatPatterns;
+        _dateTimeFormatPatterns = provider.GetDateTimeFormatPatterns().ToList();
     }
 
     public DateTime Parse(string value)
